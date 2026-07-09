@@ -3,16 +3,26 @@ import React, { createContext, useContext, useState } from 'react'
 
 const translations = {
   en: {
-    nav: {
-      links: [
-        { id: 'home', label: 'Home' },
-        { id: 'about', label: 'About' },
-        { id: 'who-can-join', label: 'Who can join' },
-        { id: 'community', label: 'Community' },
-        { id: 'community', label: 'Events' },
-        { id: 'contact', label: 'Contact' },
-      ],
-      joinButton: 'Login',},
+    // English (en.nav)
+nav: {
+  links: [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'who-can-join', label: 'Who can join' },
+    { id: 'community', label: 'Community' },
+    { id: 'community', label: 'Events' },
+    { id: 'contact', label: 'Contact' },
+  ],
+  policy: {
+    label: 'Policy',
+    items: [
+      { id: 'privacy-policy', label: 'Privacy Policy', path: '/privacy' },
+      { id: 'refund-policy', label: 'Refund Policy', path: '/refund' },
+      { id: 'terms-and-conditions', label: 'Terms & Conditions', path: '/terms' },
+    ],
+  },
+  joinButton: 'Login',
+},
     hero: {
       slide1: {
         heading: ['Empowering Women. Building Communities.', 'Creating Opportunities'],
@@ -36,7 +46,7 @@ const translations = {
       label: 'About Vedacraft',
       heading: 'The Story Behind Vedacraft',
       founderName: 'Banu Priya',
-      founderRole: 'Founder of the VedaCraft',
+      founderRole: 'Founder',
       points: [
         'Vedacraft was born from a simple belief — talented women in our communities deserve opportunities to grow, connect, and succeed.',
         'Across Tamil Nadu, thousands of women create handmade products, traditional foods, eco-friendly solutions, and unique crafts. However, many of them struggle to find markets, visibility, and business support.',
@@ -117,16 +127,24 @@ const translations = {
   },
   ta: {
     nav: {
-      links: [
-        { id: 'home', label: 'முகப்பு' },
-        { id: 'about', label: 'பற்றி' },
-        { id: 'who-can-join', label: 'யார் சேரலாம்' },
-        { id: 'community', label: 'சமூகம்' },
-        { id: 'community', label: 'நிகழ்வுகள்' },
-        { id: 'contact', label: 'தொடர்பு' },
-      ],
-      joinButton: 'வேதகிராஃப்ட்டில் சேரவும்',
-    },
+  links: [
+    { id: 'home', label: 'முகப்பு' },
+    { id: 'about', label: 'பற்றி' },
+    { id: 'who-can-join', label: 'யார் சேரலாம்' },
+    { id: 'community', label: 'சமூகம்' },
+    { id: 'community', label: 'நிகழ்வுகள்' },
+    { id: 'contact', label: 'தொடர்பு' },
+  ],
+  policy: {
+    label: 'கொள்கைகள்',
+    items: [
+      { id: 'privacy-policy', label: 'தனியுரிமைக் கொள்கை', path: '/privacy' },
+      { id: 'refund-policy', label: 'திரும்பப்பெறும் கொள்கை', path: '/refund' },
+      { id: 'terms-and-conditions', label: 'விதிமுறைகள் மற்றும் நிபந்தனைகள்', path: '/terms' },
+    ],
+  },
+  joinButton: 'வேதகிராஃப்ட்டில் சேரவும்',
+},
     hero: {
       slide1: {
         heading: ['பெண்களால் உருவாக்கப்பட்ட தொழிலை வலுப்படுத்தி. சமூகங்களை இணைத்து. வாய்ப்புகளை உருவாக்குகிறோம்'],
@@ -149,7 +167,7 @@ const translations = {
       label: 'வேதாகிராஃப்ட் அறிமுகம்',
       heading: 'வேதாகிராஃப்டின் பின்னணி கதை',
       founderName: 'பானு பிரியா',
-      founderRole: 'வேதகிராஃப்ட் நிறுவனர்',
+      founderRole: 'நிறுவனர்',
       points: [
         'வேதாகிராஃப்ட் ஒரு எளிய நம்பிக்கையிலிருந்து உருவானது — சமூகத்தில் உள்ள திறமையான பெண்களுக்கு வளர, இணைந்து செயல்பட, மற்றும் வெற்றி பெற வாய்ப்புகள் கிடைக்க வேண்டும்',
         'தமிழ்நாட்டின் பல கிராமங்களில் பெண்கள் கைவினைப் பொருட்கள், பாரம்பரிய உணவுகள், இயற்கை தயாரிப்புகள் மற்றும் பல்வேறு புதுமையான பொருட்களை உருவாக்குகின்றனர். ஆனால், அவர்களின் தயாரிப்புகள் சரியான சந்தையையும் வாய்ப்புகளையும் அடைய முடியாமல் இருக்கின்றன',

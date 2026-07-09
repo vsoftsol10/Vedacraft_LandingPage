@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <footer id="contact" className="w-full bg-black px-6 md:px-14 py-10">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1.3fr_1fr_1fr_auto] gap-10 items-start">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1.2fr_0.85fr_0.85fr_0.95fr_auto] gap-10 items-start">
         <div>
           <div className="bg-white inline-block rounded-md px-3 py-2 mb-4">
             <img src={logo} alt="VedaCraft" className="h-18 object-contain" />
@@ -73,13 +73,36 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="flex gap-3 md:justify-self-end">
+        {/* Policy links — reuses the same translation data as the Navbar's Policy dropdown */}
+        <div>
+          <p className="text-yellow-400 font-semibold text-sm mb-4">{t.nav.policy.label}</p>
+          <ul className="flex flex-col gap-3">
+            {t.nav.policy.items.map(({ id, label, path }) => (
+              <li key={id}>
+                <a
+                  href={path}
+                  className="text-white text-sm font-medium hover:text-yellow-400 transition-colors"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* <div className="flex gap-3 md:justify-self-end">
           {socialLinks.map((social) => (
             <a key={social.label} href={social.href} aria-label={social.label} className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
               {social.svg}
             </a>
           ))}
-        </div>
+        </div> */}
+      </div>
+
+      <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 flex flex-col-reverse md:flex-row items-center justify-between gap-4">
+        <p className="text-gray-400 text-xs">
+          &copy; {new Date().getFullYear()} Veda Crafts Community. All rights reserved.
+        </p>
       </div>
     </footer>
   )

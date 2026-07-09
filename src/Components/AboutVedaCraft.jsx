@@ -1,5 +1,5 @@
 import React from 'react'
-import FounderImage from '../assets/Founder.png'
+import FounderImage from '../assets/Founder.jpeg'
 import icon1 from '../assets/icon1.png'
 import icon2 from '../assets/icon2.png'
 import icon3 from '../assets/icon3.png'

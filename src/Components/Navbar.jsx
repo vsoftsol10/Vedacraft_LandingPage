@@ -24,6 +24,9 @@ const Navbar = () => {
     await signOut()
   }
 
+  const [policyOpen, setPolicyOpen] = useState(false)
+const [mobilePolicyOpen, setMobilePolicyOpen] = useState(false)
+
   
 
   const displayName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Account'
@@ -35,16 +38,45 @@ const Navbar = () => {
 
         {/* Desktop nav links */}
         <ul className="hidden md:flex items-center gap-8 text-md font-medium text-black">
-          {t.nav.links.map(({ id, label }, index) => (
-            <li
-              key={`${id}-${index}`}
-              onClick={() => handleNavClick(id)}
-              className="hover:text-gray-900 cursor-pointer transition-colors"
+  {t.nav.links.map(({ id, label }, index) => (
+    <li
+      key={`${id}-${index}`}
+      onClick={() => handleNavClick(id)}
+      className="hover:text-gray-900 cursor-pointer transition-colors"
+    >
+      {label}
+    </li>
+  ))}
+
+  {/* Policy dropdown */}
+  <li className="relative">
+    <button
+      onClick={() => setPolicyOpen((prev) => !prev)}
+      className="flex items-center gap-1 hover:text-gray-900 transition-colors cursor-pointer"
+    >
+      {t.nav.policy.label}
+      <ChevronDown size={14} className={`transition-transform ${policyOpen ? 'rotate-180' : ''}`} />
+    </button>
+
+    {policyOpen && (
+      <>
+        <div className="fixed inset-0 z-10" onClick={() => setPolicyOpen(false)} />
+        <div className="absolute left-0 mt-2 w-52 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-20">
+          {t.nav.policy.items.map((item) => (
+            <a
+              key={item.id}
+              href={item.path}
+              onClick={() => setPolicyOpen(false)}
+              className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
             >
-              {label}
-            </li>
+              {item.label}
+            </a>
           ))}
-        </ul>
+        </div>
+      </>
+    )}
+  </li>
+</ul>
 
         {/* Desktop right controls */}
         <div className="hidden md:flex items-center gap-3">
@@ -117,16 +149,42 @@ const Navbar = () => {
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-lg z-30 flex flex-col px-4 py-4 gap-4">
             <ul className="flex flex-col gap-3 text-base font-medium text-black">
-              {t.nav.links.map(({ id, label }, index) => (
-                <li
-                  key={`${id}-${index}`}
-                  onClick={() => handleNavClick(id)}
-                  className="hover:text-gray-900 cursor-pointer transition-colors py-1"
-                >
-                  {label}
-                </li>
-              ))}
-            </ul>
+  {t.nav.links.map(({ id, label }, index) => (
+    <li
+      key={`${id}-${index}`}
+      onClick={() => handleNavClick(id)}
+      className="hover:text-gray-900 cursor-pointer transition-colors py-1"
+    >
+      {label}
+    </li>
+  ))}
+</ul>
+
+{/* Mobile Policy dropdown */}
+<div className="border-t border-gray-100 pt-3">
+  <button
+    onClick={() => setMobilePolicyOpen((prev) => !prev)}
+    className="w-full flex items-center justify-between text-base font-medium text-black py-1"
+  >
+    {t.nav.policy.label}
+    <ChevronDown size={16} className={`transition-transform ${mobilePolicyOpen ? 'rotate-180' : ''}`} />
+  </button>
+
+  {mobilePolicyOpen && (
+    <div className="flex flex-col gap-2 pl-3 pt-2">
+      {t.nav.policy.items.map((item) => (
+        <a
+          key={item.id}
+          href={item.path}
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-sm text-gray-600 hover:text-gray-900 transition-colors py-1"
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  )}
+</div>
 
             <div className="flex items-center bg-gray-200 rounded-full p-0.5 text-xs font-medium w-fit">
               <button
