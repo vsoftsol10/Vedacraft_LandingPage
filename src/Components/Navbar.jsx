@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Globe, ChevronDown, LogOut, Menu, X } from 'lucide-react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import { useLanguage } from '../Context/LanguageContext'
 import { useAuth } from '../Context/AuthContext'
@@ -9,13 +10,22 @@ import SignUp from './SignUp'
 const Navbar = () => {
   const { language, setLanguage, t } = useLanguage()
   const { user, signOut } = useAuth()
+  const location = useLocation()
+  const navigate = useNavigate()
   const [authView, setAuthView] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleNavClick = (id) => {
     setMobileMenuOpen(false)
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const isHomePage = location.pathname === '/'
+
+    if (isHomePage) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return
+    }
+
+    navigate('/', { state: { scrollToId: id } })
   }
 
   const handleSignOut = async () => {
